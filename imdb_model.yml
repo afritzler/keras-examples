@@ -1,0 +1,25 @@
+class_mode: binary
+layers:
+- W_constraint: null
+  W_regularizer: null
+  activity_regularizer: null
+  cache_enabled: true
+  init: uniform
+  input_dim: 20000
+  input_length: 100
+  input_shape: !!python/tuple [20000]
+  mask_zero: false
+  name: Embedding
+  output_dim: 128
+- {activation: tanh, cache_enabled: true, forget_bias_init: one, go_backwards: false,
+  init: glorot_uniform, inner_activation: hard_sigmoid, inner_init: orthogonal, input_dim: 128,
+  input_length: null, name: LSTM, output_dim: 128, return_sequences: false, stateful: false}
+- {cache_enabled: true, name: Dropout, p: 0.5}
+- {W_constraint: null, W_regularizer: null, activation: linear, activity_regularizer: null,
+  b_constraint: null, b_regularizer: null, cache_enabled: true, init: glorot_uniform,
+  input_dim: null, name: Dense, output_dim: 1}
+- {activation: sigmoid, cache_enabled: true, name: Activation}
+loss: binary_crossentropy
+name: Sequential
+optimizer: {beta_1: 0.8999999761581421, beta_2: 0.9990000128746033, epsilon: 1.0e-08,
+  lr: 0.0010000000474974513, name: Adam}
