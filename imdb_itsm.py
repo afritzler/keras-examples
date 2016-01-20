@@ -53,6 +53,7 @@ model.compile(loss='binary_crossentropy',
               class_mode="binary")
 
 print("Train...")
+print(X_train)
 model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=3,
           validation_data=(X_test, y_test), show_accuracy=True)
 score, acc = model.evaluate(X_test, y_test,
@@ -61,10 +62,10 @@ score, acc = model.evaluate(X_test, y_test,
 print('Test score:', score)
 print('Test accuracy:', acc)
 
-print('Exporting model to YAML:')
+print('Exporting model to YAML.')
 yaml_string = model.to_yaml()
 text_file = open('imdb_model.yml','w')
 text_file.write(yaml_string)
 text_file.close()
-print('Exporting model state:')
+print('Exporting model state.')
 model.save_weights('imdb_model_weights.h5')
